@@ -5,6 +5,9 @@ const db = require('./db.cjs')
 
 const app = express()
 
+const cors = require('cors')
+
+app.use(cors())
 app.use(express.json())
 
 app.get('/questions/:questionId/answers', (req, res) => {
