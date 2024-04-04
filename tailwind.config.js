@@ -9,6 +9,7 @@ export default {
     './tags/tags.ts',
     './users/index.html',
     './users/users.ts',
+    './utils.ts',
   ],
   theme: {
     extend: {},
