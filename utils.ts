@@ -27,13 +27,13 @@ interface TagsResponse {
 }
 
 export async function fetchQuestions(): Promise<Question[]> {
-  const response = await fetch('http://localhost:3000/questions')
+  const response = await fetch('/api/questions')
 
   return await response.json()
 }
 
 export async function fetchTags(): Promise<TagsResponse> {
-  const response = await fetch('http://localhost:3000/tags')
+  const response = await fetch('/api/tags')
 
   return await response.json()
 }
