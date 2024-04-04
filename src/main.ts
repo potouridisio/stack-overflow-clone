@@ -13,7 +13,9 @@ const [questions, tagsResponse] = await Promise.all([
 const questionsContainer = document.querySelector('.space-y-4') as Element
 
 questions.forEach((question) => {
-  const questionElement = createQuestionElement(question)
+  const questionElement = createQuestionElement(question, {
+    hideQuestionBody: true,
+  })
 
   questionsContainer.appendChild(questionElement)
 

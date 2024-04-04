@@ -38,7 +38,10 @@ export async function fetchTags(): Promise<TagsResponse> {
   return await response.json()
 }
 
-export function createQuestionElement(question: Question) {
+export function createQuestionElement(
+  question: Question,
+  options?: { hideQuestionBody?: boolean }
+) {
   const questionElement = document.createElement('div')
 
   questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
@@ -61,7 +64,7 @@ export function createQuestionElement(question: Question) {
       <div class="mb-1.5 text-2xl">
         ${question.title}
       </div>
-      <p class="mb-1.5 line-clamp-2 text-sm">
+      <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
       </p>
       <div class="flex space-x-2"></div>
