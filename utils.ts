@@ -51,12 +51,12 @@ export function createQuestionElement(
       <ul class="flex flex-col py-2">
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.voteCount} votes</p>
+            <p class="text-sm text-black/60">${question.voteCount} vote${question.voteCount !== 1 ? 's' : ''}</p>
           </div>
         </li>
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.answerCount} answer</p>
+            <p class="text-sm text-black/60">${question.answerCount} answer${question.answerCount !== 1 ? 's' : ''}</p>
           </div>
         </li>
       </ul>
