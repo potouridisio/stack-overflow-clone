@@ -1,11 +1,20 @@
-import { createQuestionElement, fetchQuestions, fetchTags } from '../utils'
+import {
+  createQuestionElement,
+  fetchQuestions,
+  fetchTags,
+  fetchUsers,
+} from '../utils'
 
-const [questions, { tags }] = await Promise.all([fetchQuestions(), fetchTags()])
+const [questions, { tags }, users] = await Promise.all([
+  fetchQuestions(),
+  fetchTags(),
+  fetchUsers(),
+])
 
 const questionsContainer = document.querySelector('.space-y-4') as Element
 
 questions.forEach((question) => {
-  const questionElement = createQuestionElement(question, tags, {
+  const questionElement = createQuestionElement(question, tags, users, {
     hideQuestionBody: true,
   })
 

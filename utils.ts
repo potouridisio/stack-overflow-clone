@@ -1,3 +1,8 @@
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
+
 interface Question {
   answerCount: number
   body: string
@@ -26,6 +31,14 @@ interface TagsResponse {
   totalPages: number
 }
 
+interface User {
+  id: number
+  location: string
+  name: string
+  reputation: number
+  tagIds: number[]
+}
+
 export async function fetchQuestions(): Promise<Question[]> {
   const response = await fetch('/api/questions')
 
@@ -38,11 +51,20 @@ export async function fetchTags(): Promise<TagsResponse> {
   return await response.json()
 }
 
+export async function fetchUsers(): Promise<User[]> {
+  const response = await fetch('/api/users')
+
+  return await response.json()
+}
+
 export function createQuestionElement(
   question: Question,
   tags: Tag[],
+  users: User[],
   options?: { hideQuestionBody?: boolean }
 ) {
+  const user = users.find((user) => user.id === question.userId) as User
+
   const questionElement = document.createElement('div')
 
   questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
@@ -68,7 +90,10 @@ export function createQuestionElement(
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
       </p>
-      <div class="flex space-x-2"></div>
+      <div class="flex justify-between">
+        <div class="flex space-x-2"></div>
+        <p class="text-sm text-black/60">${user.name} ${user.reputation} asked ${dayjs().to(dayjs(question.createdAt))}</p>
+      </div>
     </div>
   `
 
