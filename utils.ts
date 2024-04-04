@@ -10,7 +10,7 @@ interface Question {
   voteCount: number
 }
 
-export interface Tag {
+interface Tag {
   createdAt: string
   description: string
   id: number
@@ -40,6 +40,7 @@ export async function fetchTags(): Promise<TagsResponse> {
 
 export function createQuestionElement(
   question: Question,
+  tags: Tag[],
   options?: { hideQuestionBody?: boolean }
 ) {
   const questionElement = document.createElement('div')
@@ -70,6 +71,19 @@ export function createQuestionElement(
       <div class="flex space-x-2"></div>
     </div>
   `
+
+  const tagsContainer = questionElement.querySelector(
+    '.flex.space-x-2'
+  ) as Element
+
+  question.tagIds.forEach((tagId) => {
+    const tag = tags.find((tag) => tag.id === tagId) as Tag
+    const tagElement = document.createElement('div')
+    tagElement.className =
+      'inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500 text-xs text-white hover:bg-sky-700'
+    tagElement.innerHTML = `<span class="px-2">${tag.name}</span>`
+    tagsContainer.appendChild(tagElement)
+  })
 
   return questionElement
 }
