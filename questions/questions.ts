@@ -32,5 +32,3 @@ questions.forEach((question) => {
     tagsContainer.appendChild(tagElement)
   })
 })
-
-export {}
