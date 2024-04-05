@@ -6,13 +6,13 @@ import {
   type User,
 } from '../utils'
 
+const questionsContainer = document.querySelector('.space-y-4') as Element
+
 const [questions, { tags }, users] = await Promise.all([
   fetchQuestions(),
   fetchTags(),
   fetchUsers(),
 ])
-
-const questionsContainer = document.querySelector('.space-y-4') as Element
 
 questions.forEach((question) => {
   const questionTags = tags.filter((tag) => question.tagIds.includes(tag.id))
