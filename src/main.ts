@@ -3,6 +3,7 @@ import {
   fetchQuestions,
   fetchTags,
   fetchUsers,
+  type User,
 } from '../utils'
 
 const [questions, { tags }, users] = await Promise.all([
@@ -14,11 +15,12 @@ const [questions, { tags }, users] = await Promise.all([
 const questionsContainer = document.querySelector('.space-y-4') as Element
 
 questions.forEach((question) => {
-  const questionElement = createQuestionElement(question, tags, users, {
+  const questionTags = tags.filter((tag) => question.tagIds.includes(tag.id))
+  const user = users.find((user) => user.id === question.userId) as User
+
+  const questionElement = createQuestionElement(question, questionTags, user, {
     hideQuestionBody: true,
   })
 
   questionsContainer.appendChild(questionElement)
 })
-
-export {}

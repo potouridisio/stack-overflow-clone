@@ -31,7 +31,7 @@ interface TagsResponse {
   totalPages: number
 }
 
-interface User {
+export interface User {
   id: number
   location: string
   name: string
@@ -60,11 +60,9 @@ export async function fetchUsers(): Promise<User[]> {
 export function createQuestionElement(
   question: Question,
   tags: Tag[],
-  users: User[],
+  user: User,
   options?: { hideQuestionBody?: boolean }
 ) {
-  const user = users.find((user) => user.id === question.userId) as User
-
   const questionElement = document.createElement('div')
 
   questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
@@ -101,12 +99,13 @@ export function createQuestionElement(
     '.flex.space-x-2'
   ) as Element
 
-  question.tagIds.forEach((tagId) => {
-    const tag = tags.find((tag) => tag.id === tagId) as Tag
+  tags.forEach((tag) => {
     const tagElement = document.createElement('div')
+
     tagElement.className =
       'inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500 text-xs text-white hover:bg-sky-700'
     tagElement.innerHTML = `<span class="px-2">${tag.name}</span>`
+
     tagsContainer.appendChild(tagElement)
   })
 
