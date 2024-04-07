@@ -103,7 +103,7 @@ export function createQuestionElement(
     const tagElement = document.createElement('div')
 
     tagElement.className =
-      'inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15'
+      'inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15'
     tagElement.innerHTML = `<span class="px-2">${tag.name}</span>`
 
     tagsContainer.appendChild(tagElement)

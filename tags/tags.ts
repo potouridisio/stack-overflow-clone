@@ -14,7 +14,7 @@ tags.forEach((tag) => {
   tagElement.innerHTML = `
     <div class="p-4">
       <div
-        class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
+        class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
       >
         <span class="px-2">${tag.name}</span>
       </div>
@@ -36,7 +36,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
     <ul class="flex flex-wrap items-center">
       <li>
         <button
-          class="pointer-events-none mx-0.5 inline-flex h-8 min-w-8 cursor-default items-center justify-center rounded-2xl border border-black/20 px-1.5 text-sm text-black/90 opacity-40 hover:bg-black/5"
+          class="pointer-events-none mx-0.5 inline-flex h-8 min-w-8 cursor-default items-center justify-center rounded border border-black/20 px-1.5 text-sm text-black/90 opacity-40 hover:bg-black/5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
       </li>
       <li>
         <button
-          class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-2xl border border-black/20 px-1.5 text-sm text-black/90 hover:bg-black/5"
+          class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded border border-black/20 px-1.5 text-sm text-black/90 hover:bg-black/5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
 
     pageElement.innerHTML = `
       <button
-        class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-2xl border ${isCurrentPage ? 'border-rose-600/50' : 'border-black/20'}${isCurrentPage ? ' bg-rose-600/10' : ''} px-1.5 text-sm ${isCurrentPage ? 'text-rose-600 hover:bg-rose-600/25' : 'text-black/90 hover:bg-black/5'}"
+        class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded border ${isCurrentPage ? 'border-rose-600/50' : 'border-black/20'}${isCurrentPage ? ' bg-rose-600/10' : ''} px-1.5 text-sm ${isCurrentPage ? 'text-rose-600 hover:bg-rose-600/25' : 'text-black/90 hover:bg-black/5'}"
       >
         ${page}
       </button>
