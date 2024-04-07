@@ -14,7 +14,7 @@ tags.forEach((tag) => {
   tagElement.innerHTML = `
     <div class="p-4">
       <div
-        class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500 text-xs text-white hover:bg-sky-700"
+        class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded-2xl bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
       >
         <span class="px-2">${tag.name}</span>
       </div>
