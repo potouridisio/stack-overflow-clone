@@ -51,7 +51,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
             />
           </svg>
         </button>
-      </li>  
+      </li>
       <li>
         <button
           class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-2xl border border-black/20 px-1.5 text-sm text-black/90 hover:bg-black/5"
@@ -86,7 +86,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
 
     pageElement.innerHTML = `
       <button
-        class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-2xl border border-black/20${isCurrentPage ? ' bg-black/10' : ''} px-1.5 text-sm text-black/90 ${isCurrentPage ? 'hover:bg-black/15' : 'hover:bg-black/5'}"
+        class="mx-0.5 inline-flex h-8 min-w-8 items-center justify-center rounded-2xl border ${isCurrentPage ? 'border-rose-600/50' : 'border-black/20'}${isCurrentPage ? ' bg-rose-600/10' : ''} px-1.5 text-sm ${isCurrentPage ? 'text-rose-600 hover:bg-rose-600/25' : 'text-black/90 hover:bg-black/5'}"
       >
         ${page}
       </button>
