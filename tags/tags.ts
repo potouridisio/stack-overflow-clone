@@ -1,35 +1,38 @@
 import { fetchTags } from '../utils'
 
 const mainContainer = document.querySelector('.grow.p-6') as Element
-const tagsContainer = document.querySelector(
-  '.mb-4.grid.grid-cols-4.gap-4'
-) as Element
 
 const searchParams = new URLSearchParams(window.location.search)
 const page = parseInt(searchParams.get('page') || '1')
 
 const { tags, currentPage, totalPages } = await fetchTags(page)
 
-tags.forEach((tag) => {
-  const tagElement = document.createElement('div')
+function renderTags() {
+  const tagsContainer = document.querySelector(
+    '.mb-4.grid.grid-cols-4.gap-4'
+  ) as Element
 
-  tagElement.className = 'rounded bg-white text-black/90 shadow-md'
-  tagElement.innerHTML = `
-    <div class="p-4">
-      <div
-        class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
-      >
-        <span class="px-2">${tag.name}</span>
+  return tags.forEach((tag) => {
+    const tagElement = document.createElement('div')
+
+    tagElement.className = 'rounded bg-white text-black/90 shadow-md'
+    tagElement.innerHTML = `
+      <div class="p-4">
+        <div
+          class="mb-1.5 inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
+        >
+          <span class="px-2">${tag.name}</span>
+        </div>
+        <p class="mb-1.5 line-clamp-4 text-sm">
+          ${tag.description}
+        </p>
+        <p class="text-sm text-black/60">${tag.occurrenceCount} question${tag.occurrenceCount !== 1 ? 's' : ''}</p>
       </div>
-      <p class="mb-1.5 line-clamp-4 text-sm">
-        ${tag.description}
-      </p>
-      <p class="text-sm text-black/60">${tag.occurrenceCount} question${tag.occurrenceCount !== 1 ? 's' : ''}</p>
-    </div>
-  `
+    `
 
-  tagsContainer.appendChild(tagElement)
-})
+    tagsContainer.appendChild(tagElement)
+  })
+}
 
 function createPaginationElement(currentPage: number, totalPages: number) {
   const paginationElement = document.createElement('nav')
@@ -101,6 +104,8 @@ function createPaginationElement(currentPage: number, totalPages: number) {
 
   return paginationElement
 }
+
+renderTags()
 
 const paginationElement = createPaginationElement(currentPage, totalPages)
 

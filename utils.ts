@@ -15,7 +15,7 @@ interface Question {
   voteCount: number
 }
 
-interface Tag {
+export interface Tag {
   createdAt: string
   description: string
   id: number
