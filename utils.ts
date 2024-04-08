@@ -45,8 +45,8 @@ export async function fetchQuestions(): Promise<Question[]> {
   return await response.json()
 }
 
-export async function fetchTags(): Promise<TagsResponse> {
-  const response = await fetch('/api/tags')
+export async function fetchTags(page?: number): Promise<TagsResponse> {
+  const response = await fetch(`/api/tags${page ? `?page=${page}` : ''}`)
 
   return await response.json()
 }

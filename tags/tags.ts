@@ -5,7 +5,10 @@ const tagsContainer = document.querySelector(
   '.mb-4.grid.grid-cols-4.gap-4'
 ) as Element
 
-const { tags, currentPage, totalPages } = await fetchTags()
+const searchParams = new URLSearchParams(window.location.search)
+const page = parseInt(searchParams.get('page') || '1')
+
+const { tags, currentPage, totalPages } = await fetchTags(page)
 
 tags.forEach((tag) => {
   const tagElement = document.createElement('div')
@@ -35,8 +38,9 @@ function createPaginationElement(currentPage: number, totalPages: number) {
   paginationElement.innerHTML = `
     <ul class="flex flex-wrap items-center">
       <li>
-        <button
+        <a
           class="pointer-events-none mx-px inline-flex h-6 min-w-6 cursor-default items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90 opacity-40 hover:bg-black/5"
+          href="${window.location.pathname}?page=${currentPage > 1 ? currentPage - 1 : 1}"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,11 +54,12 @@ function createPaginationElement(currentPage: number, totalPages: number) {
               clip-rule="evenodd"
             />
           </svg>
-        </button>
+        </a>
       </li>
       <li>
-        <button
+        <a
           class="mx-px inline-flex h-6 min-w-6 items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90 hover:bg-black/5"
+          href="${window.location.pathname}?page=${currentPage < totalPages ? currentPage + 1 : totalPages}"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +73,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
               clip-rule="evenodd"
             />
           </svg>
-        </button>
+        </a>
       </li>
     </ul>
   `
@@ -85,9 +90,10 @@ function createPaginationElement(currentPage: number, totalPages: number) {
     const isCurrentPage = page === currentPage
 
     pageElement.innerHTML = `
-      <button
+      <a
         class="mx-px inline-flex h-6 min-w-6 items-center justify-center rounded border ${isCurrentPage ? 'border-rose-600/50' : 'border-black/20'}${isCurrentPage ? ' bg-rose-600/10' : ''} px-1 align-middle text-sm ${isCurrentPage ? 'text-rose-600 hover:bg-rose-600/25' : 'text-black/90 hover:bg-black/5'}"
-      >${page}</button>
+        href="${window.location.pathname}?page=${page}"
+        >${page}</a>
     `
 
     nextButtonElement.insertAdjacentElement('beforebegin', pageElement)
