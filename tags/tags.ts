@@ -1,4 +1,4 @@
-import { fetchTags } from '../utils'
+import { fetchTags, type Tag } from '../utils'
 
 const mainContainer = document.querySelector('.grow.p-6') as Element
 
@@ -7,7 +7,7 @@ const page = parseInt(searchParams.get('page') || '1')
 
 const { tags, currentPage, totalPages } = await fetchTags(page)
 
-function renderTags() {
+function renderTags(tags: Tag[]) {
   const tagsContainer = document.querySelector(
     '.mb-4.grid.grid-cols-4.gap-4'
   ) as Element
@@ -105,7 +105,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
   return paginationElement
 }
 
-renderTags()
+renderTags(tags)
 
 const paginationElement = createPaginationElement(currentPage, totalPages)
 
