@@ -1,6 +1,7 @@
 import {
   createQuestionElement,
   fetchQuestions,
+  fetchCurrQuestion,
   fetchTags,
   fetchUsers,
   type User,
@@ -24,3 +25,10 @@ questions.forEach((question) => {
 
   questionsContainer.appendChild(questionElement)
 })
+
+const questionTitle = document.querySelectorAll('a')
+questionTitle.forEach((id) =>
+  id.addEventListener('click', () =>
+    console.log(fetchCurrQuestion(parseInt(id.id)))
+  )
+)

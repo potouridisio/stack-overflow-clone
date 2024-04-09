@@ -39,6 +39,15 @@ export interface User {
   tagIds: number[]
 }
 
+interface Answers {
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+}
+
 export async function fetchQuestions(): Promise<Question[]> {
   const response = await fetch('/api/questions')
 
@@ -53,6 +62,18 @@ export async function fetchTags(page?: number): Promise<TagsResponse> {
 
 export async function fetchUsers(): Promise<User[]> {
   const response = await fetch('/api/users')
+
+  return await response.json()
+}
+
+export async function fetchAnswers(id: number): Promise<Answers[]> {
+  const response = await fetch(`/api/questions/${id}/answers`)
+
+  return await response.json()
+}
+
+export async function fetchCurrQuestion(id: number): Promise<Question> {
+  const response = await fetch(`/api/questions/${id}`)
 
   return await response.json()
 }
@@ -82,9 +103,9 @@ export function createQuestionElement(
       </ul>
     </div>
     <div class="grow p-4">
-      <div class="mb-1.5 text-2xl">
+      <a id=${question.id} href="" class="mb-1.5 text-2xl">
         ${question.title}
-      </div>
+      </a>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
       </p>
@@ -93,6 +114,7 @@ export function createQuestionElement(
         <p class="text-sm text-black/60">${user.name} ${user.reputation} asked ${dayjs().to(dayjs(question.createdAt))}</p>
       </div>
     </div>
+    <div class="grow text-4xl text-neutral-800"></div>
   `
 
   const tagsContainer = questionElement.querySelector(
@@ -110,4 +132,42 @@ export function createQuestionElement(
   })
 
   return questionElement
+}
+
+export function createCurrQuestion(currQuestion: Question, answer: any) {
+  const questionContainer = document.querySelector('main') as Element
+  console.log(parseInt(window.location.pathname.split('/').filter(Boolean)[1]))
+
+  questionContainer.innerHTML = `<div class="min-h-16"></div>
+  <div class="mb-4 flex items-start">
+  <div class="grow text-4xl text-neutral-800">${currQuestion.title}</div>
+    <a
+       class="inline-flex min-w-16 items-center justify-center rounded bg-sky-500 px-4 py-1.5 text-center text-sm font-medium uppercase leading-6 text-white shadow-md outline-0 hover:bg-sky-700 hover:shadow-lg"
+      href="/questions/ask/"
+      >Ask Question
+    </a>
+  </div>
+   <div class="space-y-4 text-gray-400">Asked ${dayjs(currQuestion.createdAt.slice(0, 10)).fromNow()}</div>
+   <hr class="my-5" />
+   <div>
+   ${currQuestion.body}
+   </div>
+     <div class="flex space-x-2"></div>
+     <div class="flex justify-end"></div>
+    <div class="grow text-4xl text-neutral-800 my-2">${answer.length} Answer${answer.length !== 1 ? 's' : ''}</div>
+    <div class="py-1"></div>
+    <hr class="my-5" />
+    <div class="grow text-4xl text-neutral-800">Your Answer</div>
+    `
+}
+
+export function titleStringer(currQuestion: Question) {
+  let truncation =
+    currQuestion.title.length > 80
+      ? currQuestion.title.substring(0, 80)
+      : currQuestion.title
+  let specialDeletion = truncation.replace(/[^a-zA-Z ]/g, '').toLowerCase()
+  let kebabization = specialDeletion.replace(/\s+/g, '-')
+
+  return kebabization
 }
