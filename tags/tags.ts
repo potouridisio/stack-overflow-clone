@@ -42,8 +42,8 @@ function createPaginationElement(currentPage: number, totalPages: number) {
     <ul class="flex flex-wrap items-center">
       <li>
         <a
-          class="pointer-events-none mx-px inline-flex h-6 min-w-6 cursor-default items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90 opacity-40 hover:bg-black/5"
-          href="${window.location.pathname}?page=${currentPage > 1 ? currentPage - 1 : 1}"
+          class="${currentPage - 1 === 0 ? 'pointer-events-none ' : ''}mx-px inline-flex h-6 min-w-6${currentPage - 1 === 0 ? ' cursor-default' : ''} items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90${currentPage - 1 === 0 ? '  opacity-40' : ''} hover:bg-black/5"
+          href="${window.location.pathname}?page=${currentPage - 1}"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +61,8 @@ function createPaginationElement(currentPage: number, totalPages: number) {
       </li>
       <li>
         <a
-          class="mx-px inline-flex h-6 min-w-6 items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90 hover:bg-black/5"
-          href="${window.location.pathname}?page=${currentPage < totalPages ? currentPage + 1 : totalPages}"
+          class="${currentPage + 1 > totalPages ? 'pointer-events-none ' : ''}mx-px inline-flex h-6 min-w-6${currentPage + 1 > totalPages ? ' cursor-default' : ''} items-center justify-center rounded border border-black/20 px-1 align-middle text-sm text-black/90${currentPage + 1 > totalPages ? '  opacity-40' : ''} hover:bg-black/5"
+          href="${window.location.pathname}?page=${currentPage + 1}"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +96,7 @@ function createPaginationElement(currentPage: number, totalPages: number) {
       <a
         class="mx-px inline-flex h-6 min-w-6 items-center justify-center rounded border ${isCurrentPage ? 'border-rose-600/50' : 'border-black/20'}${isCurrentPage ? ' bg-rose-600/10' : ''} px-1 align-middle text-sm ${isCurrentPage ? 'text-rose-600 hover:bg-rose-600/25' : 'text-black/90 hover:bg-black/5'}"
         href="${window.location.pathname}?page=${page}"
-        >${page}</a>
+      >${page}</a>
     `
 
     nextButtonElement.insertAdjacentElement('beforebegin', pageElement)
