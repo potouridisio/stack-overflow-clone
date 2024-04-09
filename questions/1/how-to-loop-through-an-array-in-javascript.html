@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-black">
     <div class="flex">
       <header
         class="fixed left-0 top-0 z-10 w-full bg-white text-black/90 shadow-md"
@@ -145,19 +145,58 @@
           </div>
         </div>
       </aside>
-      <main class="grow p-6">
+      <main class="min-h-dvh grow p-6">
         <div class="min-h-16"></div>
         <div class="mb-4 flex items-start">
-          <div class="grow text-4xl text-neutral-800">All Questions</div>
+          <div class="grow text-4xl text-neutral-800">${postTitle}</div>
           <a
             class="inline-flex min-w-16 items-center justify-center rounded bg-sky-500 px-4 py-1.5 text-center text-sm font-medium uppercase leading-6 text-white shadow-md outline-0 hover:bg-sky-700 hover:shadow-lg"
-            href="/questions/1/how-to-loop-through-an-array-in-javascript.html"
+            href="/questions/ask/"
             >Ask Question
           </a>
         </div>
-        <div class="space-y-4"></div>
+        <div class="space-y-4">Added ${timeago}</div>
+        <hr class="my-5" />
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat sunt
+          adipisci reprehenderit libero vel a ducimus enim, accusantium facere
+          nulla! Sapiente vitae saepe asperiores atque qui enim, facere
+          consequuntur earum impedit odio laborum exercitationem dignissimos
+          consequatur esse commodi? Facilis, hic!
+          <div class="flex space-x-2">${tags}</div>
+
+          <div class="flex justify-end">
+            <div class="bg-blue-300 p-2 pr-10">
+              <p>${asked a year ago}</p>
+              <p>${name}</p>
+              <p>${tags}</p>
+            </div>
+          </div>
+          <div class="grow text-4xl text-neutral-800">${postAnswer}</div>
+          <div class="py-4">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates
+            in aut quas odit, laudantium hic recusandae sed voluptatibus ipsum
+            totam amet exercitationem explicabo illum delectus corrupti eius
+            assumenda suscipit. Veritatis hic praesentium labore laudantium
+            eveniet!
+            <div class="my-4 flex justify-end">
+              <div class="p-2 pr-10">
+                <p>${asked a year ago}</p>
+                <p>${name}</p>
+                <p>${tags}</p>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div>
+            <div class="grow text-4xl text-neutral-800">${postAnswer}</div>
+          </div>
+        </div>
       </main>
     </div>
-    <script type="module" src="./questions.ts"></script>
+    <script
+      type="module"
+      src="./how-to-loop-through-an-array-in-javascript.ts"
+    ></script>
   </body>
 </html>
