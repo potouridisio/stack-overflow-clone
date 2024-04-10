@@ -10,6 +10,7 @@ import {
 } from '../../utils'
 
 const id = parseInt(window.location.pathname.split('/').filter(Boolean)[1])
+console.log(window.location.pathname.replace('hello'))
 const [currQuestion, { tags }, users, answers] = await Promise.all([
   fetchCurrQuestion(id),
   fetchTags(),
