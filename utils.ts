@@ -3,7 +3,18 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+export interface Answer {
+
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+
+}
+
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -45,6 +56,12 @@ export async function fetchQuestions(): Promise<Question[]> {
   return await response.json()
 }
 
+export async function fetchAnswers(): Promise<any> {
+  const response = await fetch('/api/questions/1/answers')
+
+  return await response.json()
+}
+
 export async function fetchTags(page?: number): Promise<TagsResponse> {
   const response = await fetch(`/api/tags${page ? `?page=${page}` : ''}`)
 
@@ -55,7 +72,10 @@ export async function fetchUsers(): Promise<User[]> {
   const response = await fetch('/api/users')
 
   return await response.json()
+
 }
+
+
 
 export function createQuestionElement(
   question: Question,
