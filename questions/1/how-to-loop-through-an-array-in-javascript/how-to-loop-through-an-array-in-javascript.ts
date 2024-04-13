@@ -29,7 +29,7 @@ const currentUser = users.find(
   (user) => user.id === currQuestion.userId
 ) as User
 const postUserElement = document.createElement('div')
-postUserElement.className = 'bg-sky-500/10 rounded basis-60 px-2 pr-20'
+postUserElement.className = 'bg-sky-500/10 basis-60 rounded px-2'
 postUserElement.innerHTML = `
 <p class="text-sm my-2 text-gray-400">asked ${dayjs(currQuestion.createdAt.slice(0, 10)).fromNow()}</p>
 <p class="text-sm my-2">${currentUser.name}</p>
@@ -47,7 +47,7 @@ answers.forEach((answer) => {
   const answerUserContainer = document.createElement('div')
   answerUserContainer.className = 'my-4 flex justify-end'
   const answerUserInfo = document.createElement('div')
-  answerUserInfo.className = 'p-2 basis-60 pr-10'
+  answerUserInfo.className = 'p-2 pr-10 basis-60'
   answerUserInfo.innerHTML = `<p class="text-sm my-2 text-gray-400">answered ${dayjs(answer.createdAt.slice(0, 10)).fromNow()}</p>
     <p class="text-sm my-2">${answerUser.name}</p>
     <p class="text-sm my-2">${answerUser?.reputation}</p>`
