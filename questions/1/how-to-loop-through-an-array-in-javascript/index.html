@@ -93,9 +93,8 @@
         <main class="grow p-6">
             <div class="min-h-16"></div>
             <div class="mb-4 flex justify-between">
-                <div class="flex flex-col mb-4">
-                    <div class="grow text-4xl text-neutral-800">How to loop through an array in Javascript?</div>
-                    <div class=" grow text-sm font-normal"> Asked a year ago</div>
+                <div class="flex flex-col mb-4" id="questionElementContainer">
+
                 </div>
                 <a class="inline-flex min-w-16 items-center justify-center rounded bg-sky-500 px-4 py-1.5 text-center text-sm font-medium uppercase leading-6 text-white shadow-md outline-0 hover:bg-sky-700 hover:shadow-lg h-9"
                     href="/questions/ask/">Ask Question
@@ -103,35 +102,22 @@
             </div>
             <div class="space-y-4 h-px bg-black opacity-10">
             </div>
-            <div class="text-sm font-normal">I have an array of items and need to iterate over them. Currently, I'm
-                using a simple for loop, but I'm wondering if there are any other methods or techniques that can provide
-                better performance or more concise syntax. What are the recommended ways to loop through an array in
-                JavaScript?</div>
-            <div class="flex space-x-2">
-                <div
-                    class="inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15">
-                    <span class="px-2"> css </span>
-                </div>
-                <div
-                    class="inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15">
-                    <span class="px-2"> javascript </span>
-                </div>
-            </div>
-            <div class="ml-auto text-left flex flex-col bg-sky-500/[0.1]  rounded w-48">
-                <p class="text-xs text-black/60 py-1">asked a year ago</p>
-                <p class="text-xs text-black/90">John Doe</p>
-                <p class="text-xs text-black/90 py-1">1000</p>
+            <div class="text-sm font-normal" id="qBodyText"> </div>
+            <div class="flex space-x-2" id="tagsContainer">
 
             </div>
-            <div class="text-2xl mt-20">1 Answer</div>
-            <div>
-                <p class="text-sm text-black/90"> One of the recommended ways to loop through an array in JavaScript is
-                    to use the 'forEach' method. It provides a more concise syntax and handles the iteration
-                    automatically. Here's an example:</p>
+            <div id="userAsk">
+                <div class="ml-auto text-left flex flex-col bg-sky-500/[0.1]  rounded w-48">
+
+                </div>
+            </div>
+            <div class="text-2xl mt-20" id="answersContainer"></div>
+                <div id="answerBodyContainer">
+                
                 <div class="ml-auto text-left flex flex-col   rounded w-48 mt-7">
-                    <p class="text-xs text-black/60 py-1">answered a year ago</p>
-                    <p class="text-xs text-black/90">Jane Smith</p>
-                    <p class="text-xs text-black/90 py-1">2500</p>
+                   
+                </div>
+
                 </div>
 
                 <div class="space-y-4 h-px bg-black opacity-10 mt-4">

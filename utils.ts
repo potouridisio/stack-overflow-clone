@@ -56,8 +56,14 @@ export async function fetchQuestions(): Promise<Question[]> {
   return await response.json()
 }
 
+export async function fetchQuestionsId(): Promise<any> {
+  const response = await fetch('/api/questions/3')
+
+  return await response.json()
+}
+
 export async function fetchAnswers(): Promise<any> {
-  const response = await fetch('/api/questions/1/answers')
+  const response = await fetch('/api/questions/3/answers')
 
   return await response.json()
 }
