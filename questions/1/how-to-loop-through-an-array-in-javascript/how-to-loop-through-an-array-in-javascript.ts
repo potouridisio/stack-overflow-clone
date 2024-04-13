@@ -4,13 +4,14 @@ import {
   fetchUsers,
   fetchAnswers,
   fetchCurrQuestion,
+  type User,
   createCurrQuestion,
   titleStringer,
-  type User,
-} from '../../utils'
+} from '../../../utils'
 
-const id = parseInt(window.location.pathname.split('/').filter(Boolean)[1])
-console.log(window.location.pathname.replace('hello'))
+const searchParams = new URLSearchParams(window.location.search)
+const id = searchParams.get('id') as string
+
 const [currQuestion, { tags }, users, answers] = await Promise.all([
   fetchCurrQuestion(id),
   fetchTags(),
@@ -18,34 +19,21 @@ const [currQuestion, { tags }, users, answers] = await Promise.all([
   fetchAnswers(id),
 ])
 
-titleStringer(currQuestion)
-createCurrQuestion(currQuestion, answers)
+createCurrQuestion(currQuestion, tags, answers)
+titleStringer(currQuestion, id)
 
-//Post Tag
-const currQTags = tags.filter((tag) => currQuestion.tagIds.includes(tag.id))
-currQTags.forEach((tag) => {
-  const tagsContainer = document.querySelector('.flex.space-x-2') as Element
-  const tagElement = document.createElement('div')
-
-  tagElement.className =
-    'inline-flex h-6 my-2 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15'
-  tagElement.innerHTML = `<span class="px-2">${tag.name}</span>`
-
-  tagsContainer.appendChild(tagElement)
-})
-
-//Post User//
 const postUserContainer = document.querySelector(
   '.flex .justify-end'
 ) as Element
-const currUser = users.find((user) => user.id === currQuestion.userId) as User
+const currentUser = users.find(
+  (user) => user.id === currQuestion.userId
+) as User
 const postUserElement = document.createElement('div')
 postUserElement.className = 'bg-sky-500/10 rounded basis-60 px-2 pr-20'
 postUserElement.innerHTML = `
 <p class="text-sm my-2 text-gray-400">asked ${dayjs(currQuestion.createdAt.slice(0, 10)).fromNow()}</p>
-<p class="text-sm my-2">${currUser?.name}</p>
-<p class="text-sm my-2">${currUser?.reputation}</p>`
-
+<p class="text-sm my-2">${currentUser.name}</p>
+<p class="text-sm my-2">${currentUser.reputation}</p>`
 postUserContainer.appendChild(postUserElement)
 
 //Answers//
@@ -66,3 +54,4 @@ answers.forEach((answer) => {
   answerUserContainer.appendChild(answerUserInfo)
   answerContainer.appendChild(answerUserContainer)
 })
+// //Post Tag

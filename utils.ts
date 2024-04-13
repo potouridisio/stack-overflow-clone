@@ -66,13 +66,14 @@ export async function fetchUsers(): Promise<User[]> {
   return await response.json()
 }
 
-export async function fetchAnswers(id: number): Promise<Answers[]> {
+export async function fetchAnswers(id: string): Promise<Answers[]> {
   const response = await fetch(`/api/questions/${id}/answers`)
 
   return await response.json()
 }
 
-export async function fetchCurrQuestion(id: number): Promise<Question> {
+export async function fetchCurrQuestion(id: string): Promise<Question> {
+  // window.history.pushState('', '', '/questions/1/')
   const response = await fetch(`/api/questions/${id}`)
 
   return await response.json()
@@ -103,7 +104,7 @@ export function createQuestionElement(
       </ul>
     </div>
     <div class="grow p-4">
-      <a id=${question.id} href="" class="mb-1.5 text-2xl">
+      <a id="${question.id}" href="/questions/1/how-to-loop-through-an-array-in-javascript/how-to-loop-through-an-array-in-javascript.html?id=${question.id}" class="mb-1.5 text-2xl hover:text-sky-500">
         ${question.title}
       </a>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
@@ -134,10 +135,12 @@ export function createQuestionElement(
   return questionElement
 }
 
-export function createCurrQuestion(currQuestion: Question, answer: any) {
+export function createCurrQuestion(
+  currQuestion: Question,
+  tags: Tag[],
+  answer: any
+) {
   const questionContainer = document.querySelector('main') as Element
-  console.log(parseInt(window.location.pathname.split('/').filter(Boolean)[1]))
-
   questionContainer.innerHTML = `<div class="min-h-16"></div>
   <div class="mb-4 flex items-start">
   <div class="grow text-4xl text-neutral-800">${currQuestion.title}</div>
@@ -159,15 +162,27 @@ export function createCurrQuestion(currQuestion: Question, answer: any) {
     <hr class="my-5" />
     <div class="grow text-4xl text-neutral-800">Your Answer</div>
     `
+  const currQTags = tags.filter((tag) => currQuestion.tagIds.includes(tag.id))
+  currQTags.forEach((tag) => {
+    const tagsContainer = document.querySelector('.flex.space-x-2') as Element
+    const tagElement = document.createElement('div')
+
+    tagElement.className =
+      'inline-flex h-6 my-2 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15'
+    tagElement.innerHTML = `<span class="px-2">${tag.name}</span>`
+
+    tagsContainer.appendChild(tagElement)
+  })
 }
 
-export function titleStringer(currQuestion: Question) {
+export function titleStringer(currQuestion: Question, id: string) {
   let truncation =
     currQuestion.title.length > 80
       ? currQuestion.title.substring(0, 80)
       : currQuestion.title
   let specialDeletion = truncation.replace(/[^a-zA-Z ]/g, '').toLowerCase()
   let kebabization = specialDeletion.replace(/\s+/g, '-')
+  window.history.replaceState('', '', `/questions/${id}/${kebabization}/`)
 
   return kebabization
 }
