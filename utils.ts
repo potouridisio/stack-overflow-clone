@@ -81,7 +81,18 @@ export async function fetchUsers(): Promise<User[]> {
 
 }
 
+ function trunNkebab(x:string):string{
+  let y:string
+  if (x.length>80){
+    y=x.slice(0,79) + "..."
+  }
+  else{y=x }
 
+  
+  return y.replace(/([a-z])([A-Z])/g, "$1-$2")
+  .replace(/[\s_]+/g, '-')
+  .toLowerCase();
+}
 
 export function createQuestionElement(
   question: Question,
@@ -137,3 +148,6 @@ export function createQuestionElement(
 
   return questionElement
 }
+
+//let test:string='How to loop through an array in javascript'
+//console.log(trunNkebab(test))
