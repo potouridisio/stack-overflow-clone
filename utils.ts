@@ -57,13 +57,13 @@ export async function fetchQuestions(): Promise<Question[]> {
 }
 
 export async function fetchQuestionsId(): Promise<any> {
-  const response = await fetch('/api/questions/3')
+  const response = await fetch('/api/questions/1')
 
   return await response.json()
 }
 
 export async function fetchAnswers(): Promise<any> {
-  const response = await fetch('/api/questions/3/answers')
+  const response = await fetch('/api/questions/1/answers')
 
   return await response.json()
 }
@@ -89,8 +89,8 @@ export async function fetchUsers(): Promise<User[]> {
   else{y=x }
 
   
-  return y.replace(/([a-z])([A-Z])/g, "$1-$2")
-  .replace(/[\s_]+/g, '-')
+  return y.replace(/[\s_]+/g, '-')
+  .substring(0, y.length-1)
   .toLowerCase();
 }
 
@@ -101,7 +101,7 @@ export function createQuestionElement(
   options?: { hideQuestionBody?: boolean }
 ) {
   const questionElement = document.createElement('div')
-
+  const titleToKebab:string=trunNkebab(question.title)
   questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
   questionElement.innerHTML = `
     <div class="w-24 flex-none p-2 pr-0">
@@ -120,7 +120,7 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+       <a class='text-sky-500'  href='/questions/${question.id}/${titleToKebab}/index.html'>${question.title}<a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
@@ -149,5 +149,5 @@ export function createQuestionElement(
   return questionElement
 }
 
-//let test:string='How to loop through an array in javascript'
+//let test:string='How to loop through an array in javascript?'
 //console.log(trunNkebab(test))
