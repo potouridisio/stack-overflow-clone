@@ -3,7 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -65,18 +65,18 @@ export function createQuestionElement(
 ) {
   const questionElement = document.createElement('div')
 
-  questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
+  questionElement.className = 'flex'
   questionElement.innerHTML = `
     <div class="w-24 flex-none p-2 pr-0">
       <ul class="flex flex-col py-2">
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.voteCount} vote${question.voteCount !== 1 ? 's' : ''}</p>
+            <!--<p class="text-sm text-black/60">${question.voteCount} vote${question.voteCount !== 1 ? 's' : ''}</p>-->
           </div>
         </li>
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.answerCount} answer${question.answerCount !== 1 ? 's' : ''}</p>
+            <!--<p class="text-sm text-black/60">${question.answerCount} answer${question.answerCount !== 1 ? 's' : ''}</p>-->
           </div>
         </li>
       </ul>
