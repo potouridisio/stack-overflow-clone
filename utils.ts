@@ -3,7 +3,18 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+export interface Answer {
+
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+
+}
+
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -45,6 +56,18 @@ export async function fetchQuestions(): Promise<Question[]> {
   return await response.json()
 }
 
+export async function fetchQuestionsId(): Promise<any> {
+  const response = await fetch('/api/questions/1')
+
+  return await response.json()
+}
+
+export async function fetchAnswers(): Promise<any> {
+  const response = await fetch('/api/questions/1/answers')
+
+  return await response.json()
+}
+
 export async function fetchTags(page?: number): Promise<TagsResponse> {
   const response = await fetch(`/api/tags${page ? `?page=${page}` : ''}`)
 
@@ -55,6 +78,20 @@ export async function fetchUsers(): Promise<User[]> {
   const response = await fetch('/api/users')
 
   return await response.json()
+
+}
+
+ function trunNkebab(x:string):string{
+  let y:string
+  if (x.length>80){
+    y=x.slice(0,79) + "..."
+  }
+  else{y=x }
+
+  
+  return y.replace(/[\s_]+/g, '-')
+  .substring(0, y.length-1)
+  .toLowerCase();
 }
 
 export function createQuestionElement(
@@ -64,7 +101,7 @@ export function createQuestionElement(
   options?: { hideQuestionBody?: boolean }
 ) {
   const questionElement = document.createElement('div')
-
+  const titleToKebab:string=trunNkebab(question.title)
   questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
   questionElement.innerHTML = `
     <div class="w-24 flex-none p-2 pr-0">
@@ -83,7 +120,7 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+       <a class='text-sky-500'  href='/questions/${question.id}/${titleToKebab}/index.html'>${question.title}<a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
@@ -111,3 +148,4 @@ export function createQuestionElement(
 
   return questionElement
 }
+
