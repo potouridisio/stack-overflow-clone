@@ -17,12 +17,6 @@ import {
 
 
 
-//const answers:any=fetchAnswers()
-//console.log(answers)
-
-
-//console.log(window.location.pathname.split('/'))
-//const currentQuestId = parseInt(window.location.pathname.split('/')[2])
 
 
 const [questions, { tags }, users, answers, questionId] = await Promise.all([
@@ -40,8 +34,7 @@ const userWhoAsked = users.find((user) => user.id === curentQuest?.userId) as Us
 
 console.log(userWhoAsked.name)
 const currentAnswers = answers.filter((answer) => answer.questionId === currentQuestId) as Answer[]
-// αυτο πρεπει να γινει για καθε απαντηση , να βρεθει δηλαδη ο user της εκάστοτε απάντησης για 
-// να μην βγαινει undefined
+
 
 
 for (let i = 0; i < currentAnswers.length; i++) {
@@ -55,10 +48,9 @@ let tagNames: string[] = []
 
 
 const currentQuestionTags = tags.filter((tag) => curentQuest.tagIds.includes(tag.id)) as Tag[]
-//for each currentquest.tagIds
-// console.log(currentQuestionTags)
+
 for (let i = 0; i < currentQuestionTags.length; i++) {
-  //  console.log(currentQuestionTags[i].name)
+  
   tagNames.push(currentQuestionTags[i].name)
 
 }

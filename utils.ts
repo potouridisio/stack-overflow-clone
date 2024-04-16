@@ -149,5 +149,3 @@ export function createQuestionElement(
   return questionElement
 }
 
-//let test:string='How to loop through an array in javascript?'
-//console.log(trunNkebab(test))
