@@ -15,6 +15,15 @@ export interface Question {
   voteCount: number
 }
 
+export interface Answers {
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+}
+
 export interface Tag {
   createdAt: string
   description: string
@@ -53,6 +62,13 @@ export async function fetchTags(page?: number): Promise<TagsResponse> {
 
 export async function fetchUsers(): Promise<User[]> {
   const response = await fetch('/api/users')
+
+  return await response.json()
+}
+
+
+export async function fetchAnswers(): Promise<any> {
+  const response = await fetch('/api/questions/1/answers')
 
   return await response.json()
 }
@@ -111,3 +127,4 @@ export function createQuestionElement(
 
   return questionElement
 }
+
