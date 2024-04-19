@@ -73,6 +73,25 @@ export async function fetchAnswers(): Promise<any> {
   return await response.json()
 }
 
+
+function toKebabCase(inputString: string): string {
+  // Step 1: Truncate the string if it is over 80 characters long
+  if (inputString.length > 80) {
+      inputString = inputString.slice(0, 80);
+  }
+
+  // Step 2: Remove special characters and keep only lowercase a-z and 0-9
+  // Use regex to remove all characters that are not lowercase a-z or 0-9
+  const cleanedString = inputString.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+
+  // Step 3: Convert the cleaned string to kebab case
+  // Replace spaces with hyphens
+  const kebabCaseString = cleanedString.replace(/\s+/g, '-');
+
+  return kebabCaseString;
+}
+
+
 export function createQuestionElement(
   question: Question,
   tags: Tag[],
@@ -99,7 +118,9 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+        <a href="/questions/${question.id}/${toKebabCase(question.title)}" class="text-sky-500">
++          ${question.title}
++        </a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}

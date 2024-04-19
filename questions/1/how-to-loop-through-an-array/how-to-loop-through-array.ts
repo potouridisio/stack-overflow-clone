@@ -38,7 +38,9 @@ async function displaySpecificQuestion() {
   const q = questions.find(q => q.id === questionId);
   console.log('Question with ID 1:', q);
 
+
   if (q) {
+
       // Filter the tags associated with the question
       const questionTags = tags.filter(tag => q.tagIds.includes(tag.id));
       console.log('Tags for question ID 1:', questionTags);
@@ -46,6 +48,7 @@ async function displaySpecificQuestion() {
       // Find the user associated with the question
       const user = users.find(u => u.id === q.userId);
       console.log('User for question ID 1:', user);
+
       
       // Create the question element
       const questionElement = createQuestionElement(q, questionTags, user);
@@ -75,10 +78,28 @@ async function displaySpecificQuestion() {
   }
 }
 
+function toKebabCase(inputString: string): string {
+  // Step 1: Truncate the string if it is over 80 characters long
+  if (inputString.length > 80) {
+      inputString = inputString.slice(0, 80);
+  }
+
+  // Step 2: Remove special characters and keep only lowercase a-z and 0-9
+  // Use regex to remove all characters that are not lowercase a-z or 0-9
+  const cleanedString = inputString.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+
+  // Step 3: Convert the cleaned string to kebab case
+  // Replace spaces with hyphens
+  const kebabCaseString = cleanedString.replace(/\s+/g, '-');
+
+  return kebabCaseString;
+}
+
+// Example usage
+const inputString = 'How to loop through an array in JavaScript?';
+const result = toKebabCase(inputString);
+console.log(result);  // Output: 'how-to-loop-through-an-array-in-javascript'
+
+
 // Call the function to display the specific question
 displaySpecificQuestion();
- 
-
-
-
- 
