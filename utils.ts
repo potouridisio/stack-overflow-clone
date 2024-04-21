@@ -3,7 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -13,6 +13,15 @@ interface Question {
   updatedAt: string
   userId: number
   voteCount: number
+}
+
+export interface Answers {
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
 }
 
 export interface Tag {
@@ -57,6 +66,32 @@ export async function fetchUsers(): Promise<User[]> {
   return await response.json()
 }
 
+
+export async function fetchAnswers(): Promise<any> {
+  const response = await fetch('/api/questions/1/answers')
+
+  return await response.json()
+}
+
+
+function toKebabCase(inputString: string): string {
+  // Step 1: Truncate the string if it is over 80 characters long
+  if (inputString.length > 80) {
+      inputString = inputString.slice(0, 80);
+  }
+
+  // Step 2: Remove special characters and keep only lowercase a-z and 0-9
+  // Use regex to remove all characters that are not lowercase a-z or 0-9
+  const cleanedString = inputString.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+
+  // Step 3: Convert the cleaned string to kebab case
+  // Replace spaces with hyphens
+  const kebabCaseString = cleanedString.replace(/\s+/g, '-');
+
+  return kebabCaseString;
+}
+
+
 export function createQuestionElement(
   question: Question,
   tags: Tag[],
@@ -65,25 +100,27 @@ export function createQuestionElement(
 ) {
   const questionElement = document.createElement('div')
 
-  questionElement.className = 'flex rounded bg-white text-black/90 shadow-md'
+  questionElement.className = 'flex'
   questionElement.innerHTML = `
     <div class="w-24 flex-none p-2 pr-0">
       <ul class="flex flex-col py-2">
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.voteCount} vote${question.voteCount !== 1 ? 's' : ''}</p>
+            <!--<p class="text-sm text-black/60">${question.voteCount} vote${question.voteCount !== 1 ? 's' : ''}</p>-->
           </div>
         </li>
         <li class="flex items-center text-right">
           <div class="my-1 min-w-0 grow">
-            <p class="text-sm text-black/60">${question.answerCount} answer${question.answerCount !== 1 ? 's' : ''}</p>
+            <!--<p class="text-sm text-black/60">${question.answerCount} answer${question.answerCount !== 1 ? 's' : ''}</p>-->
           </div>
         </li>
       </ul>
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+        <a href="/questions/${question.id}/${toKebabCase(question.title)}" class="text-sky-500">
++          ${question.title}
++        </a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
@@ -111,3 +148,4 @@ export function createQuestionElement(
 
   return questionElement
 }
+
