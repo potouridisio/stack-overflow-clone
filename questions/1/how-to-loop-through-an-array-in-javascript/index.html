@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Stack Overflow Clone - Where Developers Learn, Share & Build Careers
+    </title>
+    <link href="../../../src/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex">
+      <header
+        class="fixed left-0 top-0 z-10 w-full bg-white text-black/90 shadow-md"
+      >
+        <div class="flex min-h-16 items-center px-6">
+          <div class="text-xl font-medium">Stack Overflow Clone</div>
+        </div>
+      </header>
+      <aside class="w-60 flex-none">
+        <div
+          class="fixed left-0 top-0 h-full w-60 bg-white text-black/90 shadow-md"
+        >
+          <div class="min-h-16"></div>
+          <div class="overflow-auto">
+            <ul class="py-2">
+              <li>
+                <a
+                  class="flex items-center bg-sky-500/10 px-4 py-2 hover:bg-sky-500/15"
+                  href="/"
+                >
+                  <div class="min-w-14 shrink-0 text-black/55">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                      />
+                    </svg>
+                  </div>
+                  <div class="my-1 min-w-0 flex-auto">
+                    <span class="block">Home</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center px-4 py-2 hover:bg-black/5"
+                  href="/questions/"
+                >
+                  <div class="min-w-14 shrink-0 text-black/55">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="my-1 min-w-0 flex-auto">
+                    <span class="block">Questions</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center px-4 py-2 hover:bg-black/5"
+                  href="/questions/1/how-to-loop-through-an-array-in-javascript/index.html"
+                >
+                  <div class="min-w-14 shrink-0 text-black/55">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="my-1 min-w-0 flex-auto">
+                    <span class="block">Question 1 (temporary)</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex items-center px-4 py-2 hover:bg-black/5"
+                  href="/tags/"
+                >
+                  <div class="min-w-14 shrink-0 text-black/55">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 6h.008v.008H6V6Z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="my-1 min-w-0 flex-auto">
+                    <span class="block">Tags</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <hr class="border-black/10" />
+            <ul class="py-2">
+              <li>
+                <a
+                  class="flex items-center px-4 py-2 hover:bg-black/5"
+                  href="/users/"
+                >
+                  <div class="min-w-14 shrink-0 text-black/55">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="my-1 min-w-0 flex-auto">
+                    <span class="block">Users</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <main class="grow p-6">
+        <div class="min-h-16"></div>
+        <article>
+          <div class="mb-4 flex items-start">
+            <div class="grow">
+              <p class="text-4xl text-neutral-800" id="questionTitle">
+                How to loop through an array in JavaScript?
+              </p>
+              <p class="py-2 text-sm text-black/60" id="questionDate">
+                Asked a year ago
+              </p>
+            </div>
+            <a
+              class="inline-flex min-w-16 items-center justify-center rounded bg-sky-500 px-4 py-1.5 text-center text-sm font-medium uppercase leading-6 text-white shadow-md outline-0 hover:bg-sky-700 hover:shadow-lg"
+              href="/questions/ask/"
+              >Ask Question</a
+            >
+          </div>
+          <hr />
+          <div class="flex flex-col py-1 gap-2">
+            <p class="text-sm leading-5">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum
+              vero doloribus quas voluptatibus nam, saepe fugiat aperiam ullam
+              voluptates nemo, vel in tempora quibusdam reiciendis tenetur quia
+              veniam assumenda qui.
+            </p>
+            <div class="flex space-x-2 mt-2">
+              <div
+                class="inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
+              >
+                <span class="px-2">css</span>
+              </div>
+              <div
+                class="inline-flex h-6 cursor-pointer items-center rounded bg-sky-500/10 text-xs text-sky-500 hover:bg-sky-500/15"
+              >
+                <span class="px-2">javascript</span>
+              </div>
+              
+            </div>
+            <div class="text-xs text-left self-end">
+              <div class="min-w-48 p-2 rounded flex flex-col gap-1 bg-sky-500/15">
+                <p class="text-black/60">asked a year ago</p>
+                <span>John Doe</span>
+                <span>1000</span>
+              </div>
+            </div>
+            <h3 class="text-2xl">1 Answer</h3>
+            <p class="text-sm leading-5">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
+              laboriosam eveniet iure vel consequatur, earum praesentium sed eos
+              doloremque! Ducimus modi perspiciatis ratione praesentium veniam
+              necessitatibus officiis exercitationem velit accusantium. Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Optio quas
+              aliquid asperiores iste nihil ea enim deserunt expedita
+              necessitatibus est, sint consectetur accusamus eum sapiente dolor,
+              doloremque saepe deleniti reiciendis. Lorem, ipsum dolor sit amet
+              consectetur adipisicing elit. Quasi aliquid ab ipsum iure dolorem,
+              consequatur commodi? Quidem numquam magnam dolorum blanditiis, est
+              deserunt, ad ipsa pariatur, totam ab voluptatibus amet.
+            </p>
+            <div class="text-xs text-left self-end">
+                <div class="min-w-48 p-2 rounded flex flex-col gap-1">
+                  <p class="text-black/60">answered a year ago</p>
+                  <span>John Doe</span>
+                  <span>1000</span>
+                </div>
+              </div>
+            <hr />
+            <h3 class="text-2xl">Your Answer</h3>
+          </div>
+          <div class="space-y-4"></div>
+        </article>
+      </main>
+    </div>
+    <script type="module" src="./how-to-loop-through-an-array-in-javascript.ts"></script>
+  </body>
+</html>
