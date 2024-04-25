@@ -83,7 +83,7 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        <a class="text-sky-500" href="/questions/${question.id}/${truncatedKebab(question.title)}/index.html">
+        <a class="text-sky-500" href="/questions/${question.id}/${truncatedKebab(question.title)}/">
           ${question.title}
           </a>
       </div>
