@@ -83,7 +83,9 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+        <a class="text-sky-500" href="/questions/${question.id}/${truncatedKebab(question.title)}/index.html">
+          ${question.title}
+          </a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
@@ -110,4 +112,14 @@ export function createQuestionElement(
   })
 
   return questionElement
+}
+
+//read about regular expressions on https://javascript.info/regular-expressions
+function truncatedKebab(text: string): string {
+  const truncatedText = text.substring(0, 80) as string
+  const finalText = truncatedText
+    .match(/[a-zA-Z0-9]+/gi)
+    ?.join('-')
+    .toLowerCase() as string
+  return finalText
 }
