@@ -3,7 +3,16 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+interface Answer {
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+}
+
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -39,9 +48,9 @@ export interface User {
   tagIds: number[]
 }
 
-export async function fetchQuestions(): Promise<Question[]> {
-  const response = await fetch('/api/questions')
-
+export async function fetchQuestions(questionId?: number): Promise<Question[]> {
+  // const response = await fetch('/api/questions')
+  const response = await fetch(`/api/questions/${questionId ? questionId : '' }`);
   return await response.json()
 }
 
@@ -122,4 +131,10 @@ function truncatedKebab(text: string): string {
     ?.join('-')
     .toLowerCase() as string
   return finalText
+}
+
+export async function fetchAnswers(questionId: number): Promise<Answer[]> {
+  const response = await fetch(`/api/questions/${questionId}/answers`);
+
+  return await response.json();
 }
