@@ -3,7 +3,16 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 
-interface Question {
+interface Answer {
+  body: string
+  createdAt: string
+  id: number
+  questionId: number
+  updatedAt: string
+  userId: number
+}
+
+export interface Question {
   answerCount: number
   body: string
   createdAt: string
@@ -39,9 +48,9 @@ export interface User {
   tagIds: number[]
 }
 
-export async function fetchQuestions(): Promise<Question[]> {
-  const response = await fetch('/api/questions')
-
+export async function fetchQuestions(questionId?: number): Promise<Question[]> {
+  // const response = await fetch('/api/questions')
+  const response = await fetch(`/api/questions/${questionId ? questionId : '' }`);
   return await response.json()
 }
 
@@ -83,7 +92,9 @@ export function createQuestionElement(
     </div>
     <div class="grow p-4">
       <div class="mb-1.5 text-2xl">
-        ${question.title}
+        <a class="text-sky-500" href="/questions/${question.id}/${truncatedKebab(question.title)}/">
+          ${question.title}
+          </a>
       </div>
       <p class="mb-1.5 line-clamp-2${options && options.hideQuestionBody ? ' hidden' : ''} text-sm">
         ${question.body}
@@ -110,4 +121,20 @@ export function createQuestionElement(
   })
 
   return questionElement
+}
+
+//read about regular expressions on https://javascript.info/regular-expressions
+function truncatedKebab(text: string): string {
+  const truncatedText = text.substring(0, 80) as string
+  const finalText = truncatedText
+    .match(/[a-zA-Z0-9]+/gi)
+    ?.join('-')
+    .toLowerCase() as string
+  return finalText
+}
+
+export async function fetchAnswers(questionId: number): Promise<Answer[]> {
+  const response = await fetch(`/api/questions/${questionId}/answers`);
+
+  return await response.json();
 }

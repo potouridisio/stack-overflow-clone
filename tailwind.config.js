@@ -12,6 +12,8 @@ export default {
     './users/index.html',
     './users/users.ts',
     './utils.ts',
+    './questions/1/how-to-loop-through-an-array-in-javascript/how-to-loop-through-an-array-in-javascript.ts',
+    './questions/1/how-to-loop-through-an-array-in-javascript/index.html'
   ],
   theme: {
     extend: {
